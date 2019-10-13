@@ -9,15 +9,12 @@
 
     <Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/gray"
-        android:elevation="6dp"
-        android:contentInsetStart="0dp"
+        style="@style/toolbar"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentInsetStart="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -27,9 +24,7 @@
 
             <ImageView
                 android:id="@+id/close_image"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:padding="10dp"
+                style="@style/toolbar_image"
 
                 android:src="@drawable/ic_close"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -38,11 +33,9 @@
 
             <TextView
                 android:id="@+id/save_image"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                style="@style/toolbar_title"
                 android:text="Edit Profile"
                 android:textColor="@color/black"
-                android:textSize="19sp"
 
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/close_image"
@@ -50,9 +43,7 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:padding="10dp"
+                style="@style/toolbar_image"
 
                 android:src="@drawable/ic_check"
                 app:layout_constraintBottom_toBottomOf="parent"
