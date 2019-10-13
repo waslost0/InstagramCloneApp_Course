@@ -4,9 +4,10 @@ import android.content.Intent
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_profile.*
+import kotlinx.android.synthetic.main.bottom_navigation_view.*
 
 abstract class BaseActivity(val navNumber : Int) : AppCompatActivity(){
-    private val TAG = "MainActivity"
+    private val TAG = "HomeActivity"
 
     abstract fun getTag() : String
 
@@ -28,7 +29,7 @@ abstract class BaseActivity(val navNumber : Int) : AppCompatActivity(){
             val NextActivity =
                 when(it.itemId)
                 {
-                    R.id.nav_item_home -> MainActivity::class.java
+                    R.id.nav_item_home -> HomeActivity::class.java
                     R.id.nav_item_search -> SearchActivity::class.java
                     R.id.nav_item_share -> ShareActivity::class.java
                     R.id.nav_item_likes -> LikesActivity::class.java

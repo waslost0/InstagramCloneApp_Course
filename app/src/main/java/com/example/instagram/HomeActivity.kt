@@ -2,14 +2,14 @@ package com.example.instagram
 
 import android.os.Bundle
 
-class MainActivity : BaseActivity(0) {
+class HomeActivity : BaseActivity(0) {
     override fun getTag(): String {
-        return "MainActivity"
+        return "HomeActivity"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_profile)
+        setContentView(R.layout.activity_home)
         setupBottomNavigation()
 
     }
