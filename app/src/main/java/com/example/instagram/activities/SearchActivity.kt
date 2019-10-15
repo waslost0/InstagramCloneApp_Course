@@ -1,6 +1,7 @@
-package com.example.instagram
+package com.example.instagram.activities
 
 import android.os.Bundle
+import com.example.instagram.R
 
 class SearchActivity : BaseActivity(1) {
     override fun getTag(): String {

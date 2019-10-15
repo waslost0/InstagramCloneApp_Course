@@ -1,10 +1,11 @@
-package com.example.instagram
+package com.example.instagram.activities
 
 import android.os.Bundle
+import com.example.instagram.R
 
-class LikesActivity : BaseActivity(3) {
+class ShareActivity : BaseActivity(2) {
     override fun getTag(): String {
-        return "LikesActivity"
+        return "ShareActivity"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
