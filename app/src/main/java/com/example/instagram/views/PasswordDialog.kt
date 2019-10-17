@@ -14,7 +14,7 @@ class PasswordDialog : DialogFragment(){
         fun onPasswordConfirm(password : String)
     }
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         mListener = context as Listener
     }

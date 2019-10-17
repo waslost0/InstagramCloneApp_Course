@@ -63,12 +63,25 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="15dp"
-            android:src="@drawable/profile"
+            android:src="@drawable/person"
             app:civ_border_color="@color/grey"
             app:civ_border_width="1dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            />
+
+        <TextView
+            android:id="@+id/change_photo_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Change photo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_image"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/blue"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/name_label"
@@ -77,7 +90,7 @@
             android:text="Name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profile_image" />
+            app:layout_constraintTop_toBottomOf="@+id/change_photo_text" />
 
         <EditText
             android:id="@+id/name_input"

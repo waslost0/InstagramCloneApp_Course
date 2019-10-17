@@ -19,6 +19,7 @@ class ProfileActivity : BaseActivity(4) {
 
         posts_count_text.text = "666"
 
+
         edit_profile_btn.setOnClickListener {
             val intent = Intent(this, EditProfileActivity::class.java)
             startActivity(intent)
