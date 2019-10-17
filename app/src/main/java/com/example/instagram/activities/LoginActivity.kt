@@ -42,6 +42,8 @@ class LoginActivity : AppCompatActivity(), KeyboardVisibilityEventListener,
                         if (it.isSuccessful) {
                             startActivity(Intent(this, HomeActivity::class.java))
                             finish()
+                        } else {
+                            showToast("Please enter correct email and password")
                         }
                     }
                 } else {

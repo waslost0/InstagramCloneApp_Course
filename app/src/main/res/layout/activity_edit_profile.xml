@@ -37,7 +37,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/save_image"
+                    android:id="@+id/edit_profile_text"
                     style="@style/toolbar_title"
                     android:text="Edit Profile"
                     android:textColor="@color/black"
@@ -47,7 +47,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/save_image"
                     style="@style/toolbar_image"
 
                     android:src="@drawable/ic_check"
