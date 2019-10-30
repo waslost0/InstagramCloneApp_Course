@@ -4,10 +4,12 @@ import android.content.Intent
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.instagram.R
+import com.example.instagram.models.User
 import kotlinx.android.synthetic.main.bottom_navigation_view.*
 
 abstract class BaseActivity(val navNumber: Int) : AppCompatActivity() {
     private val TAG = "HomeActivity"
+    lateinit var mUser: User
 
     abstract fun getTag(): String
 

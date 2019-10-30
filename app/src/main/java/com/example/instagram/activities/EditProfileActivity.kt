@@ -4,11 +4,10 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.instagram.R
 import com.example.instagram.models.User
-import com.example.instagram.utils.CameraPictureTaker
+import com.example.instagram.utils.CameraHelper
 import com.example.instagram.utils.FirebaseHelper
 import com.example.instagram.utils.ValueEventListenerAdapter
 import com.example.instagram.views.PasswordDialog
@@ -22,7 +21,7 @@ class EditProfileActivity : AppCompatActivity(), PasswordDialog.Listener {
     private lateinit var mUser: User
     private lateinit var mPendingUser: User
     private lateinit var mFirebaseHelper: FirebaseHelper
-    private lateinit var cameraPictureTaker: CameraPictureTaker
+    private lateinit var cameraHelper: CameraHelper
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,10 +29,10 @@ class EditProfileActivity : AppCompatActivity(), PasswordDialog.Listener {
         setContentView(R.layout.activity_edit_profile)
         Log.d(TAG, "onCreate")
 
-        cameraPictureTaker = CameraPictureTaker(this)
+        cameraHelper = CameraHelper(this)
         close_image.setOnClickListener { finish() }
         save_image.setOnClickListener { updateProfile() }
-        change_photo_text.setOnClickListener { cameraPictureTaker.takeCameraPicture() }
+        change_photo_text.setOnClickListener { cameraHelper.takeCameraPicture() }
 
 
         mFirebaseHelper = FirebaseHelper(this)
@@ -55,8 +54,8 @@ class EditProfileActivity : AppCompatActivity(), PasswordDialog.Listener {
 
     @SuppressLint("MissingSuperCall")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == cameraPictureTaker.REQUEST_CODE && resultCode == RESULT_OK) {
-            mFirebaseHelper.uploadUserPhoto(cameraPictureTaker.imageUri!!)
+        if (requestCode == cameraHelper.REQUEST_CODE && resultCode == RESULT_OK) {
+            mFirebaseHelper.uploadUserPhoto(cameraHelper.imageUri!!)
             {
                 mFirebaseHelper.storageUid().addOnCompleteListener {
                     val photoUrl = it.result.toString()
