@@ -12,7 +12,7 @@ class ProfileActivity : BaseActivity(4) {
     override fun getTag(): String {
         return "ProfileActivity"
     }
-    private lateinit var mFirebaseHelper: FirebaseHelper
+    private lateinit var mFirebase: FirebaseHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,8 +26,8 @@ class ProfileActivity : BaseActivity(4) {
             val intent = Intent(this, EditProfileActivity::class.java)
             startActivity(intent)
         }
-        mFirebaseHelper = FirebaseHelper(this)
-        mFirebaseHelper.currentUserReference().addValueEventListener(ValueEventListenerAdapter{
+        mFirebase = FirebaseHelper(this)
+        mFirebase.currentUserReference().addValueEventListener(ValueEventListenerAdapter{
             mUser = it.getValue(User::class.java)!!
             profile_image.loadUserPhoto(mUser.photo)
             username_text.text = mUser.username
