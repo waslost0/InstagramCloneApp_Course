@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import com.bumptech.glide.Glide
 import com.example.instagram.R
 import com.example.instagram.utils.CameraHelper
@@ -15,6 +14,7 @@ class ShareActivity : BaseActivity(2) {
     override fun getTag(): String {
         return "ShareActivity"
     }
+
     private var TAG = "BaseACtivity"
 
     private lateinit var mCamera: CameraHelper
@@ -50,7 +50,8 @@ class ShareActivity : BaseActivity(2) {
     private fun share() {
         val imageUri = mCamera.imageUri
         val imgUrl = imageUri?.lastPathSegment.toString()
-        Log.d(TAG, "URL:$imgUrl" )
+        finish()
+
         if (imageUri != null) {
             // upload image to user folder
             val uid = mFirebase.auth.currentUser!!.uid
@@ -65,21 +66,16 @@ class ShareActivity : BaseActivity(2) {
                                 .setValue(photoUrl)
                                 .addOnCompleteListener {
                                     if (it.isSuccessful) {
-                                        startActivity(
-                                            Intent(
-                                                this,
-                                                ProfileActivity::class.java
-                                            )
-                                        )
-                                        finish()
+                                        showToast("Posted")
                                     } else {
                                         showToast(it.exception!!.message!!)
                                     }
                                 }
                         }
+                    } else {
+                        showToast(it.exception!!.message!!)
                     }
                 }
-            // add image to user images <- db
         }
     }
 
