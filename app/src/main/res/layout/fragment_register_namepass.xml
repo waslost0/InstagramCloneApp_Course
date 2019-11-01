@@ -21,7 +21,7 @@
 
     <EditText
         android:id="@+id/full_name_input"
-        style="@style/login_input"
+        style="@style/big_input"
         android:hint="Full Name"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,7 +30,7 @@
 
     <EditText
         android:id="@+id/password_input"
-        style="@style/login_input"
+        style="@style/big_input"
         android:hint="Password"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +39,7 @@
 
     <Button
         android:id="@+id/register_btn"
-        style="@style/login_btn"
+        style="@style/big_btn"
         android:text="Register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

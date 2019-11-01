@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.instagram">
 
     <uses-feature
@@ -11,25 +12,39 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+
         <activity
             android:name=".activities.RegisterActivity"
-            android:windowSoftInputMode="stateVisible|adjustResize"></activity>
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activities.LoginActivity"
-            android:windowSoftInputMode="stateVisible|adjustResize" />
-        <activity android:name=".activities.EditProfileActivity" />
-        <activity android:name=".activities.HomeActivity">
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.EditProfileActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.HomeActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.SearchActivity" />
-        <activity android:name=".activities.ShareActivity" />
-        <activity android:name=".activities.ProfileActivity" />
-        <activity android:name=".activities.LikesActivity" />
+        <activity android:name=".activities.SearchActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.ShareActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.ProfileActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.LikesActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.ProfileSettingsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.AddFriendsActivity"
+            android:screenOrientation="portrait"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -38,7 +53,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
+                android:resource="@xml/file_paths" />
         </provider>
     </application>
 

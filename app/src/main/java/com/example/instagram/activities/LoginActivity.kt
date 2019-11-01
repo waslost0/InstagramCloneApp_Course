@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.instagram.R
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener
 
 class LoginActivity : AppCompatActivity(), KeyboardVisibilityEventListener,
@@ -23,6 +24,7 @@ class LoginActivity : AppCompatActivity(), KeyboardVisibilityEventListener,
         setContentView(R.layout.activity_login)
         Log.d(TAG, "LoginActivity:")
 
+        KeyboardVisibilityEvent.setEventListener(this, this)
         login_btn.isEnabled = false
         coordinateBtnAndInputs(login_btn, email_input, password_input)
         login_btn.setOnClickListener(this)
@@ -60,7 +62,7 @@ class LoginActivity : AppCompatActivity(), KeyboardVisibilityEventListener,
 
     override fun onVisibilityChanged(isKeyboardOpen: Boolean) {
         if (isKeyboardOpen) {
-            create_account_text.visibility = View.INVISIBLE
+            create_account_text.visibility = View.GONE
         } else {
             create_account_text.visibility = View.VISIBLE
         }

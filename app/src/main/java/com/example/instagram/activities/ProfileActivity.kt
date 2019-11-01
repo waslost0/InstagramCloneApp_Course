@@ -32,13 +32,23 @@ class ProfileActivity : BaseActivity(4) {
         setContentView(R.layout.activity_profile)
         setupBottomNavigation()
 
-        posts_count_text.text = "666"
-
+        settings_image.setOnClickListener{
+            val intent = Intent(this, ProfileSettingsActivity::class.java)
+            startActivity(intent)
+        }
 
         edit_profile_btn.setOnClickListener {
             val intent = Intent(this, EditProfileActivity::class.java)
             startActivity(intent)
         }
+
+        add_friends_image.setOnClickListener {
+            val intent = Intent(this, AddFriendsActivity::class.java)
+            startActivity(intent)
+        }
+
+
+
         mFirebase = FirebaseHelper(this)
         mFirebase.currentUserReference().addValueEventListener(ValueEventListenerAdapter {
             mUser = it.getValue(User::class.java)!!
@@ -52,6 +62,8 @@ class ProfileActivity : BaseActivity(4) {
                 val images = it.children.map{ it.getValue(String::class.java)!!}
                 images_recycler.adapter = ImagesAdapter(images)
             })
+
+
 
     }
 
@@ -76,9 +88,6 @@ class ImagesAdapter(private val images: List<String>) :
         holder.image.loadImage(images.asReversed()[position])
     }
 
-    private fun ImageView.loadImage(image: String){
-        Glide.with(this).load(image).centerCrop().into(this)
-    }
 
     override fun getItemCount(): Int = images.size
 }

@@ -30,12 +30,23 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
+                android:id="@+id/add_friends_image"
+                style="@style/icon"
+                android:src="@drawable/add_friends"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/settings_image"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/settings_image"
                 style="@style/icon"
                 android:src="@drawable/ic_more"
 
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </Toolbar>
@@ -117,7 +128,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="5dp"
-        android:background="@drawable/btn_bg"
+        android:background="@drawable/edit_btn_bg"
         android:minHeight="0dp"
         android:paddingTop="4dp"
         android:paddingBottom="4dp"
@@ -128,6 +139,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_weight="5"
         app:layout_constraintStart_toEndOf="@id/profile_image" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/images_recycler"
