@@ -60,7 +60,7 @@ class ProfileActivity : BaseActivity(4) {
 class ImagesAdapter(private val images: List<String>) :
     RecyclerView.Adapter<ImagesAdapter.ViewHolder>() {
 
-    private lateinit var reversed: List<String>
+//    private lateinit var reversed: List<String>
 
     class ViewHolder(val image: ImageView) : RecyclerView.ViewHolder(image)
 
@@ -72,8 +72,8 @@ class ImagesAdapter(private val images: List<String>) :
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        reversed = images.asReversed()
-        holder.image.loadImage(reversed[position])
+//        reversed = images.asReversed()
+        holder.image.loadImage(images.asReversed()[position])
     }
 
     private fun ImageView.loadImage(image: String){

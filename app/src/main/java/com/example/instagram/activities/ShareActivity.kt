@@ -6,9 +6,13 @@ import android.content.Intent
 import android.os.Bundle
 import com.bumptech.glide.Glide
 import com.example.instagram.R
+import com.example.instagram.models.User
 import com.example.instagram.utils.CameraHelper
 import com.example.instagram.utils.FirebaseHelper
+import com.example.instagram.utils.ValueEventListenerAdapter
+import com.google.firebase.database.ServerValue
 import kotlinx.android.synthetic.main.activity_share.*
+import java.util.*
 
 class ShareActivity : BaseActivity(2) {
     override fun getTag(): String {
@@ -19,6 +23,7 @@ class ShareActivity : BaseActivity(2) {
 
     private lateinit var mCamera: CameraHelper
     private lateinit var mFirebase: FirebaseHelper
+    override lateinit var mUser: User
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +37,9 @@ class ShareActivity : BaseActivity(2) {
 
         back_image.setOnClickListener { finish() }
         share_text.setOnClickListener { share() }
+        mFirebase.currentUserReference().addValueEventListener(ValueEventListenerAdapter {
+            mUser = it.getValue(User::class.java)!!
+        })
 
 
     }
@@ -66,7 +74,13 @@ class ShareActivity : BaseActivity(2) {
                                 .setValue(photoUrl)
                                 .addOnCompleteListener {
                                     if (it.isSuccessful) {
-                                        showToast("Posted")
+                                        mFirebase.database.child("feed-posts").child(uid)
+                                            .push()
+                                            .setValue(mkFeedPost(uid, photoUrl))
+                                            .addOnCompleteListener {
+                                                if (it.isSuccessful)
+                                                    showToast("Posted")
+                                            }
                                     } else {
                                         showToast(it.exception!!.message!!)
                                     }
@@ -79,5 +93,39 @@ class ShareActivity : BaseActivity(2) {
         }
     }
 
-
+    private fun mkFeedPost(uid: String, imageDownloadUrl: String): FeedPost {
+        return FeedPost(
+            uid = uid,
+            username = mUser.username,
+            image = imageDownloadUrl,
+            caption = caption_input.text.toString(),
+            photo = mUser.photo
+        )
+    }
 }
+
+data class FeedPost(
+    val uid: String = "",
+    val username: String = "",
+    val image: String = "",
+    val likesCount: Int = 0,
+    val commentsCount: Int = 0,
+    val caption: String = "",
+    val comments: List<Comment> = emptyList(),
+    val timestamp: Any = ServerValue.TIMESTAMP,
+    val photo: String? = null
+) {
+    fun timestampDate(): Date = Date(timestamp as Long)
+}
+
+
+data class Comment(val uid: String, val username: String, val text: String)
+
+
+
+
+
+
+
+
+

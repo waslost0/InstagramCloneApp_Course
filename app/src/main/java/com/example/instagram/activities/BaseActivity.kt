@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.bottom_navigation_view.*
 
 abstract class BaseActivity(val navNumber: Int) : AppCompatActivity() {
     private val TAG = "HomeActivity"
-    lateinit var mUser: User
+    open lateinit var mUser: User
 
     abstract fun getTag(): String
 
