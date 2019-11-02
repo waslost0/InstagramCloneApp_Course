@@ -8,5 +8,5 @@ data class User(
     val followers: Map<String, Boolean> = emptyMap(),
 
     val website: String? = null, val bio: String? = null, val phone: Long? = null,
-    val photo: String? = null, @Exclude val uid: String? = null
+    val photo: String? = null, @Exclude val uid: String = ""
 )

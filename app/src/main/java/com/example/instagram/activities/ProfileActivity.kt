@@ -51,13 +51,13 @@ class ProfileActivity : BaseActivity(4) {
 
         mFirebase = FirebaseHelper(this)
         mFirebase.currentUserReference().addValueEventListener(ValueEventListenerAdapter {
-            mUser = it.getValue(User::class.java)!!
+            mUser = it.asUser()!!
             profile_image.loadUserPhoto(mUser.photo)
             username_text.text = mUser.username
         })
 
         images_recycler.layoutManager = GridLayoutManager(this, 3)
-        mFirebase.database.child("images").child(mFirebase.auth.currentUser!!.uid)
+        mFirebase.database.child("images").child(mFirebase.currentUid()!!)
             .addValueEventListener(ValueEventListenerAdapter{
                 val images = it.children.map{ it.getValue(String::class.java)!!}
                 images_recycler.adapter = ImagesAdapter(images)
@@ -84,8 +84,8 @@ class ImagesAdapter(private val images: List<String>) :
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-//        reversed = images.asReversed()
-        holder.image.loadImage(images.asReversed()[position])
+//        reversed = images
+        holder.image.loadImage(images[position])
     }
 
 
